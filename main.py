@@ -19,7 +19,6 @@ page = 1
 
 def scrap(page):
     url = f"{BASE}/{COUNTRY}/shop/search?q=&page={page}&{FILTERS}"
-    print(url)
     request = rq.get(url)
     data = request.json()
     total_results = []
