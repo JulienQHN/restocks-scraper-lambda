@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Get the values of the variables from .env using the os library:
-BASE = os.environ.get("BASE")
+BASEURL = os.environ.get("BASEURL")
 FILTERS = os.environ.get("FILTERS")
 COUNTRY = os.environ.get('COUNTRY')
 
@@ -15,7 +15,7 @@ COUNTRY = os.environ.get('COUNTRY')
 page = 1
 products_added = 0
 current_collection = []
-url = f"{BASE}/{COUNTRY}/shop/search?q=&page={page}&{FILTERS}"
+url = f"{BASEURL}/{COUNTRY}/shop/search?q=&page={page}&{FILTERS}"
 
 # Open the json file where the collection is stored
 with open('datas.json', 'r') as f:
@@ -26,7 +26,7 @@ with open('datas.json', 'r') as f:
 def scrap(page, products_added, current_collection, url):
     print("Scrapping in progress ...")
     while page != 0:
-        url = f"{BASE}/{COUNTRY}/shop/search?q=&page={page}&{FILTERS}"
+        url = f"{BASEURL}/{COUNTRY}/shop/search?q=&page={page}&{FILTERS}"
         try:
             request = rq.get(url)
             request.raise_for_status()
